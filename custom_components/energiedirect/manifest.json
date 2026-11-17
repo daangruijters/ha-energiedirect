@@ -1,14 +1,24 @@
 {
   "domain": "energiedirect",
   "name": "Energiedirect",
-  "codeowners": ["@daangruijters"],
+  "categories": [
+    "energy.energy_prices",
+    "energy.meters_monitoring"
+  ],
+  "codeowners": [
+    "@daangruijters"
+  ],
   "config_flow": true,
-  "dependencies": ["recorder"],
+  "dependencies": [
+    "recorder"
+  ],
   "documentation": "https://github.com/daangruijters/ha-energiedirect",
   "integration_type": "service",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/daangruijters/ha-energiedirect/issues",
-  "loggers": ["custom_components.energiedirect"],
+  "loggers": [
+    "custom_components.energiedirect"
+  ],
   "requirements": [],
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

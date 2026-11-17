@@ -44,7 +44,7 @@ def _address() -> AddressData:
 def test_all_sensors_have_values_and_translations():
     address = _address()
     strings = json.loads(
-        (ROOT / "custom_components/energiedirect/strings.json").read_text(encoding="utf-8")
+        (ROOT / "custom_components/energiedirect/translations/en.json").read_text(encoding="utf-8")
     )["entity"]["sensor"]
     missing = []
     for desc in SENSORS:
@@ -98,7 +98,7 @@ def test_dynamic_price_sensors():
     prices = parse_dynamic_prices(_fixture("dynamic_prices"), tz)
     now = datetime(2026, 11, 17, 0, 30, tzinfo=tz)
     strings = json.loads(
-        (ROOT / "custom_components/energiedirect/strings.json").read_text(encoding="utf-8")
+        (ROOT / "custom_components/energiedirect/translations/en.json").read_text(encoding="utf-8")
     )["entity"]["sensor"]
     values = {}
     for desc in DYNAMIC_SENSORS:
@@ -113,3 +113,17 @@ def test_dynamic_price_sensors():
     assert low <= values["dynamic_electricity_price_average_today"] <= high
     attrs = DYNAMIC_SENSORS[0].attrs_fn(prices["electricity"], now)
     assert len(attrs["today"]) == 24 and len(attrs["tomorrow"]) == 24
+
+
+def test_translations_complete():
+    """Every language has the same keys as English (there is no strings.json)."""
+
+    def keys(obj, prefix=""):
+        if isinstance(obj, dict):
+            return {k for key, v in obj.items() for k in keys(v, f"{prefix}{key}.")}
+        return {prefix}
+
+    folder = ROOT / "custom_components/energiedirect/translations"
+    english = keys(json.loads((folder / "en.json").read_text(encoding="utf-8")))
+    for path in folder.glob("*.json"):
+        assert keys(json.loads(path.read_text(encoding="utf-8"))) == english, path.name

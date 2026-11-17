@@ -14,6 +14,29 @@ When you add it you choose one of two tiers (you can add both):
 | **Dynamic prices** | none | Energiedirect's public hourly electricity, gas and feed-in prices for today and tomorrow |
 | **My Energiedirect account** | browser session cookies | your **contracted tariffs**, **usage and costs** and **budget bill (termijnbedrag)** from [Mijn Energiedirect](https://mijn.energiedirect.nl) |
 
+## Installation
+
+Requires Home Assistant 2026.3 or newer.
+
+### Marketplace (Home Assistant 2026.11 and newer)
+
+1. Go to **Settings → Marketplace** and select **Add from link** (this needs a connected GitHub
+   account).
+2. Enter `daangruijters/ha-energiedirect` and select **Add**, then install **Energiedirect**.
+3. Set it up:
+
+   [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=energiedirect)
+
+   or add **Energiedirect** under **Settings → Devices & services**, and choose a tier.
+
+On Home Assistant before 2026.11, add the repository in HACS as a custom repository of type
+*Integration* instead.
+
+### Manually
+
+Copy `custom_components/energiedirect` into the `custom_components` folder of your Home Assistant
+config and restart Home Assistant.
+
 ## Dynamic prices
 
 No setup beyond picking the tier. One device, *Energiedirect dynamic prices*, with these sensors
@@ -94,12 +117,9 @@ responses into `dump/` (personal data, ignored by git).
 
 Unit tests: `.venv\Scripts\python -m pytest`.
 
-## Install in Home Assistant
+## Debug logging
 
-Copy `custom_components/energiedirect` into the `custom_components` folder of your Home Assistant
-config, restart, then add **Energiedirect** under **Settings → Devices & services**.
-
-To see what it does, add this to `configuration.yaml`:
+To see what the integration does, add this to `configuration.yaml`:
 
 ```yaml
 logger:
