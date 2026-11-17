@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# raw API dumps from scripts/test_login.py --dump contain personal data
+dump/
+out/
+dev/config/*
+!dev/config/configuration.yaml

@@ -1,0 +1,113 @@
+{
+  "price_details": {
+    "price_overview": [
+      {
+        "supply_address_id": "ADDRESS",
+        "price_costs_per_contract": [
+          {
+            "contract_id": "1000000002",
+            "contract_type": "variable",
+            "energy_type": "gas",
+            "price_periods": [
+              {
+                "proposition_description": "Gas onbepaalde tijd variabel",
+                "consumption_price": {
+                  "total_consumption_price": [
+                    {
+                      "amount": 1.4872,
+                      "description": "Totaal tarief gas (1 t/m 1.000 m3)",
+                      "unit_of_measurement": "/m3",
+                      "unit_of_measurement_amount": "€",
+                      "zone": "1"
+                    },
+                    {
+                      "amount": 1.4872,
+                      "description": "Totaal tarief gas (1.001 t/m 170.000 m3)",
+                      "unit_of_measurement": "/m3",
+                      "unit_of_measurement_amount": "€",
+                      "zone": "2"
+                    }
+                  ]
+                },
+                "price_groups": [
+                  {
+                    "description": "Leveringskosten gas",
+                    "prices": [
+                      {
+                        "description": "Variabele leveringskosten (G1/gasregio 05)",
+                        "unit_price": 0.7604,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/m3",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Vaste leveringskosten",
+                        "unit_price": 0.19692,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/dag",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        },
+                        "yearly_amount": 71.88
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Netbeheerkosten",
+                    "prices": [
+                      {
+                        "description": "voor Enexis B.V. : Capaciteitstarief t/m 10 m3/uur",
+                        "unit_price": 0.72975,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/dag",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        },
+                        "yearly_amount": 266.36
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Belasting en toeslagen",
+                    "prices": [
+                      {
+                        "description": "Energiebelasting zone 1 (1 t/m 1.000 m3)",
+                        "unit_price": 0.7268,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/m3",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Energiebelasting zone 2 (1.001 t/m 170.000 m3)",
+                        "unit_price": 0.7268,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/m3",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

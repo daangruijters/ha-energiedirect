@@ -1,0 +1,13 @@
+# Local Home Assistant for testing the integration: docker compose up -d, then http://localhost:8123
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:2026.11.1
+    container_name: ha-energiedirect-dev
+    restart: unless-stopped
+    ports:
+      - "8123:8123"
+    environment:
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ./dev/config:/config
+      - ./custom_components/energiedirect:/config/custom_components/energiedirect:ro

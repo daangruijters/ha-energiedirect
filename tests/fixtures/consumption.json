@@ -1,0 +1,129 @@
+{
+  "electricity": {
+    "ean": "EAN_E",
+    "hourly": [
+      {
+        "startTimeStamp": "2026-11-14T22:00:00.000+01:00",
+        "usage": {
+          "consumptionBreakdown": {
+            "consumption": 0.5,
+            "returnSupply": 0,
+            "total": 0.5
+          },
+          "costBreakdown": {
+            "total": 0.18,
+            "fixed": 0.035,
+            "variable": 0.145
+          }
+        }
+      },
+      {
+        "startTimeStamp": "2026-11-14T23:00:00.000+01:00",
+        "usage": {
+          "consumptionBreakdown": {
+            "consumption": 0.661,
+            "returnSupply": 0,
+            "total": 0.661
+          },
+          "costBreakdown": {
+            "total": 0.23039,
+            "fixed": 0.03516,
+            "variable": 0.19523
+          }
+        }
+      }
+    ],
+    "daily": [
+      {
+        "startTimeStamp": "2026-10-31T00:00:00.000+01:00",
+        "usage": {
+          "consumptionBreakdown": {
+            "consumption": 20.0,
+            "returnSupply": -0.5,
+            "total": 19.5
+          },
+          "costBreakdown": {
+            "total": 6.5,
+            "fixed": 0.84,
+            "variable": 5.66
+          }
+        }
+      },
+      {
+        "startTimeStamp": "2026-11-13T00:00:00.000+01:00",
+        "usage": {
+          "consumptionBreakdown": {
+            "consumption": 25.0,
+            "returnSupply": -2.0,
+            "total": 23.0
+          },
+          "costBreakdown": {
+            "total": 8.0,
+            "fixed": 0.84,
+            "variable": 7.16
+          }
+        }
+      },
+      {
+        "startTimeStamp": "2026-11-14T00:00:00.000+01:00",
+        "usage": {
+          "consumptionBreakdown": {
+            "consumption": 28.241,
+            "returnSupply": -1.292,
+            "total": 26.948999999999998
+          },
+          "costBreakdown": {
+            "total": 8.80292,
+            "fixed": 0.84384,
+            "variable": 7.95908
+          }
+        }
+      }
+    ],
+    "monthly": [],
+    "yearly": []
+  },
+  "gas": {
+    "ean": "EAN_G",
+    "hourly": [
+      {
+        "startTimeStamp": "2026-11-14T23:00:00.000+01:00",
+        "usage": {
+          "consumptionBreakdown": {
+            "consumption": 0.201,
+            "returnSupply": 0,
+            "total": 0.201
+          },
+          "costBreakdown": {
+            "total": 0.33754,
+            "fixed": 0.03861,
+            "variable": 0.29893
+          }
+        }
+      },
+      {
+        "startTimeStamp": "2026-11-15T00:00:00.000+01:00",
+        "usage": null
+      }
+    ],
+    "daily": [
+      {
+        "startTimeStamp": "2026-11-14T00:00:00.000+01:00",
+        "usage": {
+          "consumptionBreakdown": {
+            "consumption": 4.1,
+            "returnSupply": 0,
+            "total": 4.1
+          },
+          "costBreakdown": {
+            "total": 6.9,
+            "fixed": 0.93,
+            "variable": 5.97
+          }
+        }
+      }
+    ],
+    "monthly": [],
+    "yearly": []
+  }
+}

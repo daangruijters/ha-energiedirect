@@ -1,0 +1,167 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Energiedirect toevoegen",
+        "description": "Kies wat je wilt instellen. Dynamische prijzen hebben geen login nodig; met je account krijg je je eigen tarieven, verbruik, kosten en termijnbedrag. Je kunt ook allebei toevoegen.",
+        "menu_options": {
+          "dynamic_prices": "Dynamische prijzen (zonder login)",
+          "account": "Mijn Energiedirect-account"
+        }
+      },
+      "dynamic_prices": {
+        "title": "Dynamische prijzen Energiedirect",
+        "description": "Voegt de openbare uurprijzen voor stroom, gas en teruglevering van energiedirect.nl toe, voor vandaag en morgen. Geen login nodig."
+      },
+      "account": {
+        "title": "Mijn Energiedirect koppelen",
+        "description": "De inlogpagina van Energiedirect vraagt om een captcha, dus log zelf in en geef de sessie door:\n\n1. Open een **privé/incognitovenster** en log in op {portal_url}\n2. Druk op F12, open het tabblad **Netwerk** en herlaad de pagina\n3. Klik op een verzoek naar `mijn.energiedirect.nl/api/...` en kopieer onder **Request Headers** de hele waarde van **cookie**\n4. Plak die hieronder en sluit het privévenster **zonder uit te loggen**",
+        "data": {
+          "cookies": "Cookie-header"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Energiedirect-sessie verlopen",
+        "description": "De inlogpagina van Energiedirect vraagt om een captcha, dus log zelf in en geef de sessie door:\n\n1. Open een **privé/incognitovenster** en log in op {portal_url}\n2. Druk op F12, open het tabblad **Netwerk** en herlaad de pagina\n3. Klik op een verzoek naar `mijn.energiedirect.nl/api/...` en kopieer onder **Request Headers** de hele waarde van **cookie**\n4. Plak die hieronder en sluit het privévenster **zonder uit te loggen**",
+        "data": {
+          "cookies": "Cookie-header"
+        }
+      },
+      "reconfigure": {
+        "title": "Energiedirect-sessie vervangen",
+        "description": "Plak de cookie-header van een nieuwe Mijn Energiedirect-sessie, bijvoorbeeld nadat je bent uitgelogd of een andere login wilt gebruiken. Die moet bij hetzelfde account horen.\n\n1. Open een **privé/incognitovenster** en log in op {portal_url}\n2. Druk op F12, open het tabblad **Netwerk** en herlaad de pagina\n3. Klik op een verzoek naar `mijn.energiedirect.nl/api/...` en kopieer onder **Request Headers** de hele waarde van **cookie**\n4. Plak die hieronder en sluit het privévenster **zonder uit te loggen**",
+        "data": {
+          "cookies": "Cookie-header"
+        }
+      }
+    },
+    "error": {
+      "no_cookies": "Dit lijkt geen cookie-header.",
+      "invalid_session": "Deze sessie is niet ingelogd of verlopen. Log opnieuw in en kopieer nieuwe cookies.",
+      "cannot_connect": "Kan Energiedirect niet bereiken.",
+      "unknown": "Onverwachte fout, zie de logs."
+    },
+    "abort": {
+      "already_configured": "Al ingesteld.",
+      "reauth_successful": "Sessie bijgewerkt.",
+      "wrong_account": "Deze cookies horen bij een ander Energiedirect-account.",
+      "reconfigure_successful": "Sessie vervangen.",
+      "nothing_to_configure": "Voor dynamische prijzen valt niets in te stellen."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "electricity_price_normal": {
+        "name": "Stroomprijs normaaltarief"
+      },
+      "electricity_price_low": {
+        "name": "Stroomprijs daltarief"
+      },
+      "electricity_supply_price_normal": {
+        "name": "Leveringstarief stroom normaal"
+      },
+      "electricity_supply_price_low": {
+        "name": "Leveringstarief stroom dal"
+      },
+      "electricity_energy_tax": {
+        "name": "Energiebelasting stroom"
+      },
+      "electricity_feed_in_compensation": {
+        "name": "Terugleververgoeding stroom"
+      },
+      "electricity_fixed_supply_cost": {
+        "name": "Vaste leveringskosten stroom"
+      },
+      "electricity_network_cost": {
+        "name": "Netbeheerkosten stroom"
+      },
+      "energy_tax_reduction": {
+        "name": "Vermindering energiebelasting"
+      },
+      "gas_price": {
+        "name": "Gasprijs"
+      },
+      "gas_supply_price": {
+        "name": "Leveringstarief gas"
+      },
+      "gas_energy_tax": {
+        "name": "Energiebelasting gas"
+      },
+      "gas_fixed_supply_cost": {
+        "name": "Vaste leveringskosten gas"
+      },
+      "gas_network_cost": {
+        "name": "Netbeheerkosten gas"
+      },
+      "electricity_consumption_last_day": {
+        "name": "Stroomverbruik laatste dag"
+      },
+      "electricity_return_last_day": {
+        "name": "Teruglevering laatste dag"
+      },
+      "electricity_cost_last_day": {
+        "name": "Stroomkosten laatste dag"
+      },
+      "gas_consumption_last_day": {
+        "name": "Gasverbruik laatste dag"
+      },
+      "gas_cost_last_day": {
+        "name": "Gaskosten laatste dag"
+      },
+      "electricity_consumption_this_month": {
+        "name": "Stroomverbruik deze maand"
+      },
+      "electricity_return_this_month": {
+        "name": "Teruglevering deze maand"
+      },
+      "electricity_cost_this_month": {
+        "name": "Stroomkosten deze maand"
+      },
+      "gas_consumption_this_month": {
+        "name": "Gasverbruik deze maand"
+      },
+      "gas_cost_this_month": {
+        "name": "Gaskosten deze maand"
+      },
+      "data_available_until": {
+        "name": "Verbruiksdata beschikbaar tot"
+      },
+      "monthly_payment": {
+        "name": "Termijnbedrag"
+      },
+      "expected_year_costs": {
+        "name": "Verwachte jaarkosten"
+      },
+      "expected_settlement": {
+        "name": "Verwachte jaarafrekening"
+      },
+      "payment_terms_left": {
+        "name": "Resterende termijnen"
+      },
+      "next_payment_due": {
+        "name": "Volgende termijn"
+      },
+      "dynamic_electricity_price": {
+        "name": "Dynamische stroomprijs"
+      },
+      "dynamic_electricity_price_next": {
+        "name": "Dynamische stroomprijs volgend uur"
+      },
+      "dynamic_electricity_price_lowest_today": {
+        "name": "Dynamische stroomprijs laagste vandaag"
+      },
+      "dynamic_electricity_price_average_today": {
+        "name": "Dynamische stroomprijs gemiddeld vandaag"
+      },
+      "dynamic_electricity_price_highest_today": {
+        "name": "Dynamische stroomprijs hoogste vandaag"
+      },
+      "dynamic_gas_price": {
+        "name": "Dynamische gasprijs"
+      },
+      "dynamic_feed_in_price": {
+        "name": "Dynamische terugleverprijs"
+      }
+    }
+  }
+}

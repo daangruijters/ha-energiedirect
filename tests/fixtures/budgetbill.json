@@ -1,0 +1,32 @@
+{
+  "isEndOfNettingCustomer": false,
+  "budgetBillPlan": {
+    "startDate": "2026-03-22T00:00:00.000Z",
+    "endDate": "2027-03-21T00:00:00.000Z",
+    "currentBudgetBill": 260,
+    "totalInvoicedBudgetBills": 2113,
+    "totalBudgetBills": 3153,
+    "numberOfTermsLeft": 4,
+    "state": "ActivePlan",
+    "firstChangeableTerm": {
+      "id": "8",
+      "budgetBill": 260,
+      "dueDate": "2026-12-07T00:00:00.000Z"
+    }
+  },
+  "expectedYearCosts": {
+    "amount": 4005,
+    "min": 3910,
+    "max": 4110
+  },
+  "goals": {
+    "JARNoChange": {
+      "expectedJarPayment": {
+        "amount": 857,
+        "min": 957,
+        "max": 757,
+        "direction": "Pay"
+      }
+    }
+  }
+}

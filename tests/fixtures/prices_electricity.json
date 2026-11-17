@@ -1,0 +1,195 @@
+{
+  "price_details": {
+    "price_overview": [
+      {
+        "supply_address_id": "ADDRESS",
+        "price_costs_per_contract": [
+          {
+            "contract_id": "1000000001",
+            "contract_type": "variable",
+            "energy_type": "electricity",
+            "price_periods": [
+              {
+                "proposition_description": "Groene Stroom - Variabel - Flexibele looptijd",
+                "consumption_price": {
+                  "total_consumption_price": [
+                    {
+                      "amount": 0.29867,
+                      "description": "Totaal elektriciteit Normaaltarief (1 t/m 2.900 kWh)",
+                      "unit_of_measurement": "/kWh",
+                      "unit_of_measurement_amount": "€",
+                      "zone": "1"
+                    },
+                    {
+                      "amount": 0.29867,
+                      "description": "Totaal elektriciteit Normaaltarief (2.901 t/m 10.000 kWh)",
+                      "unit_of_measurement": "/kWh",
+                      "unit_of_measurement_amount": "€",
+                      "zone": "2"
+                    },
+                    {
+                      "amount": 0.29504,
+                      "description": "Totaal elektriciteit Daltarief (1 t/m 2.900 kWh)",
+                      "unit_of_measurement": "/kWh",
+                      "unit_of_measurement_amount": "€",
+                      "zone": "1"
+                    },
+                    {
+                      "amount": 0.29504,
+                      "description": "Totaal elektriciteit Daltarief (2.901 t/m 10.000 kWh)",
+                      "unit_of_measurement": "/kWh",
+                      "unit_of_measurement_amount": "€",
+                      "zone": "2"
+                    }
+                  ]
+                },
+                "price_groups": [
+                  {
+                    "description": "Leveringskosten elektriciteit",
+                    "prices": [
+                      {
+                        "description": "Variabele leveringskosten Normaaltarief",
+                        "unit_price": 0.18782,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/kWh",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Variabele leveringskosten Daltarief",
+                        "unit_price": 0.18419,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/kWh",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Teruglevering boven verbruik (geen btw)",
+                        "unit_price": -0.15,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/kWh",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Vaste leveringskosten",
+                        "unit_price": 0.32819,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/dag",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        },
+                        "yearly_amount": 119.79
+                      },
+                      {
+                        "description": "Terugleverkosten 2.501 t/m 2.750 kWh",
+                        "unit_price": 0.93485,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/dag",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        },
+                        "yearly_amount": 0
+                      },
+                      {
+                        "description": "Terugleverkosten vanaf 01-01-2027",
+                        "unit_price": 0.0751,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/kWh",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Terugleververgoeding vanaf 01-01-2027 (geen btw)",
+                        "unit_price": -0.07761,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/kWh",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Netbeheerkosten",
+                    "prices": [
+                      {
+                        "description": "voor Enexis B.V. : Capaciteitstarief t/m 3 x 25A of t/m 1 x 80A",
+                        "unit_price": 1.30365,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/dag",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        },
+                        "yearly_amount": 475.83
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Belasting en toeslagen",
+                    "prices": [
+                      {
+                        "description": "Energiebelasting zone 1 (1 t/m 2.900 kWh)",
+                        "unit_price": 0.11085,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/kWh",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Energiebelasting zone 2 (2.901 t/m 10.000 kWh)",
+                        "unit_price": 0.11085,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/kWh",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        }
+                      },
+                      {
+                        "description": "Vermindering energiebelasting",
+                        "unit_price": -1.72317,
+                        "unit_price_text": "",
+                        "unit_of_measurement": "/dag",
+                        "unit_of_measurement_amount": "€",
+                        "unit_quantity": {
+                          "yearly_quantity": "",
+                          "unit_of_measurement": ""
+                        },
+                        "yearly_amount": -628.96
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
