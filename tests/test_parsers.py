@@ -101,3 +101,41 @@ def test_dynamic_prices():
     assert slot.components == {"market_price": 0.23675, "purchasing_fee": 0.0205, "tax": 0.11085}
     assert len(p.slots_on(elec, date(2026, 11, 17))) == 24
     assert p.slot_at(elec, datetime(2030, 1, 1, tzinfo=tz)) is None
+
+
+def test_shape_checks_accept_current_responses():
+    assert p.check_tariffs(_fixture("prices_electricity")) is None
+    assert p.check_tariffs(_fixture("prices_gas")) is None
+    assert p.check_consumption(_fixture("consumption")) is None
+    assert p.check_budget_bill(_fixture("budgetbill")) is None
+    assert p.check_dynamic_prices(_fixture("dynamic_prices")) is None
+    address = {
+        "supply_address_id": "1",
+        "connections": [{"energy_type": "gas", "contract": {"id": "2", "contract_group_id": "3"}}],
+    }
+    assert p.check_supply_addresses([address]) is None
+    assert p.check_supply_addresses([]) is None  # no addresses is not a structure change
+
+    # Tomorrow's gas prices are published later; the key is then left out.
+    prices = _fixture("dynamic_prices")
+    del prices["prices"][-1]["gas"]
+    assert p.check_dynamic_prices(prices) is None
+
+
+def test_shape_checks_report_changes():
+    assert p.check_supply_addresses({"addresses": []}) == "expected a list, got dict"
+    assert "supply_address_id" in p.check_supply_addresses([{"id": "1", "connections": []}])
+
+    assert p.check_tariffs({"prices": {}}) == "no price_details"
+
+    consumption = _fixture("consumption")
+    consumption["electricity"]["hourlyUsage"] = consumption["electricity"].pop("hourly")
+    assert p.check_consumption(consumption) == "electricity without hourly"
+
+    assert p.check_budget_bill({"plan": {}}) == "no budgetBillPlan, expectedYearCosts"
+
+    prices = _fixture("dynamic_prices")
+    prices["prices"][0]["electricity"]["tariffs"][0]["price"] = prices["prices"][0][
+        "electricity"
+    ]["tariffs"][0].pop("totalAmount")
+    assert p.check_dynamic_prices(prices) == "electricity slot without totalAmount"

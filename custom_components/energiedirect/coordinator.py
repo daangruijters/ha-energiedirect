@@ -15,7 +15,9 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.event import async_track_time_change
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
+from . import parsers as p
 from .api import (
+    EnergiedirectApiChangedError,
     EnergiedirectAuthError,
     EnergiedirectClient,
     EnergiedirectError,
@@ -28,6 +30,7 @@ from .const import (
     PRICES_UPDATE_INTERVAL,
     UPDATE_INTERVAL,
 )
+from .issues import ApiShapeMonitor
 from .parsers import (
     Consumption,
     PriceSlot,
@@ -76,6 +79,7 @@ class EnergiedirectCoordinator(DataUpdateCoordinator[dict[str, AddressData]]):
             update_interval=UPDATE_INTERVAL,
         )
         self.client = client
+        self.shapes = ApiShapeMonitor(hass)
 
     async def _async_update_data(self) -> dict[str, AddressData]:
         try:
@@ -86,6 +90,7 @@ class EnergiedirectCoordinator(DataUpdateCoordinator[dict[str, AddressData]]):
             raise UpdateFailed(str(err)) from err
         finally:
             self._store_cookies()
+            self.shapes.sync()
 
         for address in data.values():
             for consumption in address.consumption.values():
@@ -109,11 +114,15 @@ class EnergiedirectCoordinator(DataUpdateCoordinator[dict[str, AddressData]]):
 
         result: dict[str, AddressData] = {}
         addresses = await client.get_supply_addresses()
+        if not self.shapes.check(
+            p.ENDPOINT_SUPPLY_ADDRESSES, addresses, p.check_supply_addresses
+        ):
+            raise EnergiedirectApiChangedError("Unexpected supply address data")
         active = [a for a in addresses if a.get("contract_status") == "active"] or addresses
         for raw in active:
             address_id = str(raw["supply_address_id"])
             label = " ".join(
-                str(p) for p in (raw.get("street"), raw.get("house_number")) if p
+                str(part) for part in (raw.get("street"), raw.get("house_number")) if part
             ).strip()
             address = AddressData(address_id=address_id, label=label.title() or address_id)
 
@@ -127,17 +136,20 @@ class EnergiedirectCoordinator(DataUpdateCoordinator[dict[str, AddressData]]):
                 )
                 address.products[energy_type] = contract.get("commodity_product_description")
                 prices = await client.get_prices(contract["contract_group_id"], contract["id"])
+                self.shapes.check(p.ENDPOINT_TARIFFS, prices, p.check_tariffs)
                 for tariffs in parse_tariffs(prices):
                     address.tariffs[tariffs.energy_type] = tariffs
 
             if address.contract_group_id:
-                address.consumption = parse_consumption(
-                    await client.get_consumption(address_id, address.contract_group_id)
-                )
+                consumption = await client.get_consumption(address_id, address.contract_group_id)
+                self.shapes.check(p.ENDPOINT_CONSUMPTION, consumption, p.check_consumption)
+                address.consumption = parse_consumption(consumption)
                 try:
-                    address.budget_bill = parse_budget_bill(
-                        await client.get_budget_bill(address_id, address.contract_group_id)
+                    budget_bill = await client.get_budget_bill(
+                        address_id, address.contract_group_id
                     )
+                    self.shapes.check(p.ENDPOINT_BUDGET_BILL, budget_bill, p.check_budget_bill)
+                    address.budget_bill = parse_budget_bill(budget_bill)
                 except EnergiedirectError as err:
                     _LOGGER.debug("No budget bill info for %s: %s", address_id, err)
 
@@ -159,15 +171,18 @@ class DynamicPriceCoordinator(DataUpdateCoordinator[dict[str, list[PriceSlot]]])
             update_interval=PRICES_UPDATE_INTERVAL,
         )
         self.tz = ZoneInfo(PRICES_TIMEZONE)
+        self.shapes = ApiShapeMonitor(hass)
 
     async def _async_update_data(self) -> dict[str, list[PriceSlot]]:
         try:
             raw = await fetch_dynamic_prices(async_get_clientsession(self.hass))
         except EnergiedirectError as err:
             raise UpdateFailed(str(err)) from err
-        prices = parse_dynamic_prices(raw, self.tz)
+        ok = self.shapes.check(p.ENDPOINT_DYNAMIC_PRICES, raw, p.check_dynamic_prices)
+        self.shapes.sync()
+        prices = parse_dynamic_prices(raw, self.tz) if ok else {}
         if not prices:
-            raise UpdateFailed("No dynamic prices in the response")
+            raise UpdateFailed("Unexpected dynamic price data")
         return prices
 
     def now(self) -> datetime:

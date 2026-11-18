@@ -163,5 +163,27 @@
         "name": "Dynamic feed-in price"
       }
     }
+  },
+  "issues": {
+    "api_changed_supply_addresses": {
+      "title": "Energiedirect changed its addresses and contracts data",
+      "description": "The addresses and contracts data from Energiedirect no longer has the structure this integration expects ({detail}). Energiedirect probably changed its website, so the affected sensors may stop updating until the integration is updated.\n\nCheck whether there is an update for the Energiedirect integration, or report it at {issue_url}. This warning disappears by itself once the data can be read again."
+    },
+    "api_changed_tariffs": {
+      "title": "Energiedirect changed its contracted tariffs data",
+      "description": "The contracted tariffs data from Energiedirect no longer has the structure this integration expects ({detail}). Energiedirect probably changed its website, so the affected sensors may stop updating until the integration is updated.\n\nCheck whether there is an update for the Energiedirect integration, or report it at {issue_url}. This warning disappears by itself once the data can be read again."
+    },
+    "api_changed_consumption": {
+      "title": "Energiedirect changed its usage and costs data",
+      "description": "The usage and costs data from Energiedirect no longer has the structure this integration expects ({detail}). Energiedirect probably changed its website, so the affected sensors may stop updating until the integration is updated.\n\nCheck whether there is an update for the Energiedirect integration, or report it at {issue_url}. This warning disappears by itself once the data can be read again."
+    },
+    "api_changed_budget_bill": {
+      "title": "Energiedirect changed its budget bill data",
+      "description": "The budget bill data from Energiedirect no longer has the structure this integration expects ({detail}). Energiedirect probably changed its website, so the affected sensors may stop updating until the integration is updated.\n\nCheck whether there is an update for the Energiedirect integration, or report it at {issue_url}. This warning disappears by itself once the data can be read again."
+    },
+    "api_changed_dynamic_prices": {
+      "title": "Energiedirect changed its dynamic prices data",
+      "description": "The dynamic prices data from Energiedirect no longer has the structure this integration expects ({detail}). Energiedirect probably changed its website, so the affected sensors may stop updating until the integration is updated.\n\nCheck whether there is an update for the Energiedirect integration, or report it at {issue_url}. This warning disappears by itself once the data can be read again."
+    }
   }
 }

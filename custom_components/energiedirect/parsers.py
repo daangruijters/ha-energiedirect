@@ -284,3 +284,90 @@ def slot_at(slots: list[PriceSlot], moment: datetime) -> PriceSlot | None:
 
 def slots_on(slots: list[PriceSlot], day: date) -> list[PriceSlot]:
     return [s for s in slots if s.start.date() == day]
+
+
+# ------------------------------------------------------------- shape checks
+#
+# The APIs are undocumented and can change. These checks look only at the structure the
+# parsers rely on (not at the values), so an empty result for a new customer is fine but a
+# renamed or moved field is reported. Each returns None when the shape is as expected, or a
+# short description of what is missing.
+
+ENDPOINT_SUPPLY_ADDRESSES = "supply_addresses"
+ENDPOINT_TARIFFS = "tariffs"
+ENDPOINT_CONSUMPTION = "consumption"
+ENDPOINT_BUDGET_BILL = "budget_bill"
+ENDPOINT_DYNAMIC_PRICES = "dynamic_prices"
+
+
+def _missing(obj: Any, *keys: str) -> list[str]:
+    return [k for k in keys if not isinstance(obj, dict) or k not in obj]
+
+
+def check_supply_addresses(data: Any) -> str | None:
+    if not isinstance(data, list):
+        return f"expected a list, got {type(data).__name__}"
+    for address in data:
+        if missing := _missing(address, "supply_address_id", "connections"):
+            return f"address without {', '.join(missing)}"
+        for conn in address.get("connections") or []:
+            if missing := _missing(conn, "energy_type", "contract"):
+                return f"connection without {', '.join(missing)}"
+            if conn.get("contract") and (
+                missing := _missing(conn["contract"], "id", "contract_group_id")
+            ):
+                return f"contract without {', '.join(missing)}"
+    return None
+
+
+def check_tariffs(data: Any) -> str | None:
+    if missing := _missing(data, "price_details"):
+        return f"no {', '.join(missing)}"
+    if missing := _missing(data["price_details"], "price_overview"):
+        return f"no price_details.{', '.join(missing)}"
+    if not parse_tariffs(data):
+        return "no tariffs found in price_overview"
+    return None
+
+
+def check_consumption(data: Any) -> str | None:
+    if not isinstance(data, dict):
+        return f"expected an object, got {type(data).__name__}"
+    blocks = {k: v for k, v in data.items() if k in ("electricity", "gas") and v}
+    if not blocks:
+        return "no electricity or gas block"
+    for energy_type, block in blocks.items():
+        if missing := _missing(block, "hourly", "daily"):
+            return f"{energy_type} without {', '.join(missing)}"
+        for entry in (block.get("hourly") or [])[:1]:
+            if missing := _missing(entry, "startTimeStamp", "usage"):
+                return f"{energy_type}.hourly entry without {', '.join(missing)}"
+    return None
+
+
+def check_budget_bill(data: Any) -> str | None:
+    if missing := _missing(data, "budgetBillPlan", "expectedYearCosts"):
+        return f"no {', '.join(missing)}"
+    return None
+
+
+def check_dynamic_prices(data: Any) -> str | None:
+    if missing := _missing(data, "prices"):
+        return f"no {', '.join(missing)}"
+    days = data["prices"]
+    if not isinstance(days, list) or not days:
+        return "no days in prices"
+    for day in days:
+        # A kind is left out for a day whose prices aren't published yet (e.g. tomorrow's gas).
+        if not isinstance(day, dict) or "date" not in day:
+            return "day without date"
+        present = [k for k in _DYNAMIC_KEYS if day.get(k)]
+        if not present:
+            return f"day {day['date']} without {', '.join(_DYNAMIC_KEYS)}"
+        for api_key in present:
+            if not isinstance(day[api_key], dict) or "tariffs" not in day[api_key]:
+                return f"{api_key} without tariffs"
+            for slot in day[api_key]["tariffs"] or []:
+                if missing := _missing(slot, "startDateTime", "endDateTime", "totalAmount"):
+                    return f"{api_key} slot without {', '.join(missing)}"
+    return None

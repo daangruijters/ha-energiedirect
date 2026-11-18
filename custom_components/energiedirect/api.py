@@ -47,6 +47,10 @@ class EnergiedirectAuthError(EnergiedirectError):
     """The browser session is missing, invalid or expired."""
 
 
+class EnergiedirectApiChangedError(EnergiedirectError):
+    """A response no longer has the structure the integration expects."""
+
+
 def parse_cookie_string(raw: str) -> dict[str, str]:
     """Parse a pasted ``Cookie`` request header (``a=1; b=2``)."""
     raw = raw.strip()

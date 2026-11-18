@@ -23,3 +23,5 @@ PRICES_UNIQUE_ID = "dynamic_prices"
 # re-read from the cached data every quarter hour.
 PRICES_UPDATE_INTERVAL = timedelta(hours=1)
 PRICES_TIMEZONE = "Europe/Amsterdam"
+
+ISSUE_TRACKER_URL = "https://github.com/daangruijters/ha-energiedirect/issues"

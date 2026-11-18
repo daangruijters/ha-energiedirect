@@ -163,5 +163,27 @@
         "name": "Dynamische terugleverprijs"
       }
     }
+  },
+  "issues": {
+    "api_changed_supply_addresses": {
+      "title": "Energiedirect heeft de gegevens voor adressen en contracten gewijzigd",
+      "description": "De gegevens voor adressen en contracten van Energiedirect hebben niet meer de opbouw die deze integratie verwacht ({detail}). Waarschijnlijk heeft Energiedirect de website aangepast, dus de betreffende sensoren kunnen stoppen met bijwerken totdat de integratie is bijgewerkt.\n\nKijk of er een update is voor de Energiedirect-integratie, of meld het op {issue_url}. Deze waarschuwing verdwijnt vanzelf zodra de gegevens weer te lezen zijn."
+    },
+    "api_changed_tariffs": {
+      "title": "Energiedirect heeft de gegevens voor contracttarieven gewijzigd",
+      "description": "De gegevens voor contracttarieven van Energiedirect hebben niet meer de opbouw die deze integratie verwacht ({detail}). Waarschijnlijk heeft Energiedirect de website aangepast, dus de betreffende sensoren kunnen stoppen met bijwerken totdat de integratie is bijgewerkt.\n\nKijk of er een update is voor de Energiedirect-integratie, of meld het op {issue_url}. Deze waarschuwing verdwijnt vanzelf zodra de gegevens weer te lezen zijn."
+    },
+    "api_changed_consumption": {
+      "title": "Energiedirect heeft de gegevens voor verbruik en kosten gewijzigd",
+      "description": "De gegevens voor verbruik en kosten van Energiedirect hebben niet meer de opbouw die deze integratie verwacht ({detail}). Waarschijnlijk heeft Energiedirect de website aangepast, dus de betreffende sensoren kunnen stoppen met bijwerken totdat de integratie is bijgewerkt.\n\nKijk of er een update is voor de Energiedirect-integratie, of meld het op {issue_url}. Deze waarschuwing verdwijnt vanzelf zodra de gegevens weer te lezen zijn."
+    },
+    "api_changed_budget_bill": {
+      "title": "Energiedirect heeft de gegevens voor termijnbedrag gewijzigd",
+      "description": "De gegevens voor termijnbedrag van Energiedirect hebben niet meer de opbouw die deze integratie verwacht ({detail}). Waarschijnlijk heeft Energiedirect de website aangepast, dus de betreffende sensoren kunnen stoppen met bijwerken totdat de integratie is bijgewerkt.\n\nKijk of er een update is voor de Energiedirect-integratie, of meld het op {issue_url}. Deze waarschuwing verdwijnt vanzelf zodra de gegevens weer te lezen zijn."
+    },
+    "api_changed_dynamic_prices": {
+      "title": "Energiedirect heeft de gegevens voor dynamische prijzen gewijzigd",
+      "description": "De gegevens voor dynamische prijzen van Energiedirect hebben niet meer de opbouw die deze integratie verwacht ({detail}). Waarschijnlijk heeft Energiedirect de website aangepast, dus de betreffende sensoren kunnen stoppen met bijwerken totdat de integratie is bijgewerkt.\n\nKijk of er een update is voor de Energiedirect-integratie, of meld het op {issue_url}. Deze waarschuwing verdwijnt vanzelf zodra de gegevens weer te lezen zijn."
+    }
   }
 }
